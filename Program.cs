@@ -5,8 +5,8 @@ class lesson5{
     static void Main(){
         Console.Clear();
         //firstTask();
-        secondTask();
-       // thirdTask();
+        //secondTask();
+       thirdTask();
     }
 
 //Задача 1: Задайте значения M и N. Напишите программу, которая выведет 
@@ -34,7 +34,28 @@ class lesson5{
 
     }
 
-    public static string ShowDigit(int firstDigit,int secondDigit)
+    //Задача 3: Задайте произвольный массив. Выведете его элементы, начиная с конца.
+    // Использовать рекурсию, не использовать циклы.
+    static void thirdTask(){
+        Random rnd =  new Random();
+        int n = rnd.Next(0, 20);
+
+        int[] array = new int[n];
+        for(int i=0; i<n; i++) 
+            array[i] = rnd.Next(1000, 9999);
+
+        Console.WriteLine("Исходный массив:");
+        Console.WriteLine($"[{PrintArray(array)}]");
+
+        Console.WriteLine($"Перевернутый массив:");
+        Console.WriteLine($"[{PrintArray(ArraySwap(array,array.Length-1))}]");
+            
+
+
+
+    }
+
+    static string ShowDigit(int firstDigit,int secondDigit)
         {
             if (firstDigit > secondDigit)
             return "";
@@ -42,7 +63,7 @@ class lesson5{
             return $"{firstDigit} " + ShowDigit(firstDigit+1,secondDigit);
         }
 
-    public static uint funAck(uint m, uint n)
+    static uint funAck(uint m, uint n)
         {
             if (m == 0) 
                 return n + 1;
@@ -54,6 +75,18 @@ class lesson5{
 
         }
 
+    static int [] ArraySwap(int [] array,int index){
 
+        if (index <= 0)
+            return array;
+        int temp = array[index];
+        array[index] = array[array.Length - index-1];
+        array[array.Length - index-1] = temp;
+        return ArraySwap(array,index -= 2);
+    }
+
+    static string PrintArray(int [] array){
+        return string.Join(", ",array);
+    }
 
 }
