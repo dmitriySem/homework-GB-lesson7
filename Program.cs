@@ -4,8 +4,8 @@ class lesson5{
 
     static void Main(){
         Console.Clear();
-        firstTask();
-        //secondTask();
+        //firstTask();
+        secondTask();
        // thirdTask();
     }
 
@@ -20,7 +20,17 @@ class lesson5{
 
         Console.WriteLine($"Числа от {M} до {N}: {ShowDigit(M,N)}");
 
-        
+    }
+//Задача 2: Напишите программу вычисления функции Аккермана с помощью рекурсии. 
+//Даны два неотрицательных числа m и n.
+        static void secondTask(){
+        Console.WriteLine("Введите значение m:");
+        uint m = uint.Parse(Console.ReadLine()!);
+
+        Console.WriteLine("Введите значение n:");
+        uint n = uint.Parse(Console.ReadLine()!);
+
+        Console.WriteLine($"Значение по фукнкции Аккермана ({m},{n}) = {funAck(m,n)}");
 
     }
 
@@ -30,6 +40,18 @@ class lesson5{
             return "";
             
             return $"{firstDigit} " + ShowDigit(firstDigit+1,secondDigit);
+        }
+
+    public static uint funAck(uint m, uint n)
+        {
+            if (m == 0) 
+                return n + 1;
+            else
+                if (n == 0) 
+                    return funAck(m - 1, 1);
+                else
+                    return funAck(m - 1, funAck(m, n - 1));            
+
         }
 
 
